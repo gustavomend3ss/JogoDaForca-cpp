@@ -73,7 +73,7 @@ O projeto utiliza algumas bibliotecas da linguagem C++ para lidar com entrada de
 #include <ctime>      // números aleatórios
 #include <windows.h>  // configuração UTF-8 no console
 
-#pragma region  📁 O Projeto
+## 📁 O Projeto
 O projeto possui a seguinte organização de arquivos:
 
 ```text
