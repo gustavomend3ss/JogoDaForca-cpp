@@ -60,68 +60,115 @@ Durante o desenvolvimento foram aplicados diversos conceitos importantes:
 ### Organização do código
 - separação do código em funções
 
-# 📚 Bibliotecas utilizadas
+## 📚 Bibliotecas utilizadas
+
+O projeto utiliza algumas bibliotecas da linguagem C++ para lidar com entrada de dados, manipulação de estruturas e leitura de arquivos.
 
 ```cpp
-#include <iostream> -> entrada e saída de dados
-#include <string> -> manipulação de palavras
-#include <map> -> estrutura de dicionário
-#include <vector> -> lista dinâmica
-#include <fstream> -> leitura e escrita de arquivos
-#include <ctime> / #include <cstdlib> -> números aleatórios
-#include <windows.h> -> configuração UTF-8 no console
+#include <iostream>   // entrada e saída de dados
+#include <string>     // manipulação de palavras
+#include <map>        // estrutura de dicionário
+#include <vector>     // lista dinâmica
+#include <fstream>    // leitura de arquivos
+#include <ctime>      // números aleatórios
+#include <windows.h>  // configuração UTF-8 no console
 
-# 📂 Estrutura do projeto
+#pragma region  📁 O Projeto
+O projeto possui a seguinte organização de arquivos:
 
-JogoDaForca
+```text
+JogoDaForca/
 │
 ├── forca.cpp
-├── lista.txt
+├── palavras.txt
+├── makefile
 └── README.md
+```
+- **forca.cpp** → arquivo principal contendo toda a lógica do jogo  
+- **palavras.txt** → banco de palavras utilizado pelo jogo  
+- **makefile** → arquivo responsável por automatizar a compilação  
+- **README.md** → documentação do projeto  
 
-# 📄 Arquivo de palavras
 
-O arquivo lista.txt contém o banco de palavras utilizadas pelo jogo.
+## 📄 Arquivo de palavras
 
-Exemplo:
-5
-MORANGO
+O arquivo **palavras.txt** contém o conjunto de palavras que podem ser utilizadas pelo jogo.
+
+Formato do arquivo:
+
+```text
+6
+MARACUJA
 ABACATE
-UVA
-MELANCIA
 LIMAO
+UVA
+MELAO
+MELANCIA
+```
+A primeira linha indica **quantas palavras existem no arquivo**.  
+As linhas seguintes representam as palavras disponíveis para o jogo.
 
-## 🛠️ Compilação com Makefile
+Durante a execução, o programa lê esse arquivo utilizando a biblioteca:
 
-O projeto também utiliza **Makefile** para automatizar o processo de compilação.
+```cpp
+#include <fstream>
+```
 
-O Make permite que o programa seja compilado com apenas um comando no terminal, evitando a necessidade de digitar todo o comando `g++` manualmente.
+Isso permite que o programa carregue palavras externas sem precisar alterar o código-fonte.
 
-### Makefile utilizado
+## ⚙️ Compilação com Makefile
 
-```make
+O projeto utiliza **Makefile** para automatizar o processo de compilação.
+
+Normalmente, para compilar um programa em C++, precisaríamos executar um comando manualmente no terminal.  
+Com o **Make**, basta executar um único comando, tornando o processo mais prático e organizado.
+
+
+## 📦 Makefile utilizado
+
+O arquivo **makefile** define como o projeto deve ser compilado.
+
+```makefile
 CXX = g++
 
 CXXFLAGS = -std=c++11 -fexec-charset=UTF-8
 
 forca: forca.cpp
 	$(CXX) $(CXXFLAGS) forca.cpp -o forca
+```
 
-| Elemento               | Função                                       |
-| ---------------------- | -------------------------------------------- |
-| `CXX`                  | define qual compilador será utilizado        |
-| `CXXFLAGS`             | define parâmetros adicionais para compilação |
-| `-std=c++11`           | habilita recursos da versão C++11            |
-| `-fexec-charset=UTF-8` | permite exibição correta de acentos          |
+## 📖 Explicação dos elementos
 
-Basta executar no terminal:
+| Elemento               | Função                                          |
+| ---------------------- | ----------------------------------------------- |
+| `CXX`                  | define qual compilador será utilizado           |
+| `CXXFLAGS`             | define parâmetros adicionais de compilação      |
+| `-std=c++11`           | habilita recursos da versão C++11               |
+| `-fexec-charset=UTF-8` | permite exibição correta de acentos no terminal |
+
+
+## ▶️ Como compilar
+
+No terminal, execute:
+
+```bash
 make
+```
 
 Se o programa já estiver compilado e não houver alterações no código, o Make exibirá:
+
+```text
 make: 'forca' is up to date.
+```
 
-Executar o programa:
+## 🚀 Como executar
+
+Após a compilação:
+
+```bash
 ./forca
+```
 
+O jogo será iniciado diretamente no terminal.
 
 
